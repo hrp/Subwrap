@@ -1,4 +1,4 @@
-= <i>Subwrap</i> -- an enhanced +svn+ command
+# <i>Subwrap</i> -- an enhanced +svn+ command
 link:include/subwrap.jpg
 
 [<b>Home page</b>:]        http://subwrap.rubyforge.org/
@@ -9,19 +9,19 @@ link:include/subwrap.jpg
 [<b>Copyright</b>:]        2007 QualitySmith, Inc.
 [<b>License</b>:]          {GNU General Public License}[http://www.gnu.org/copyleft/gpl.html]
 
-== What is it? 
+## What is it? 
 
 This is a replacement <b><tt>svn</tt> command-line client</b> meant to be used instead of the standard +svn+ command. (Actually, it's a _wrapper_, not a strict replacement, because it still uses <tt>/usr/bin/svn</tt> to do all the dirty work.)
 
-== Who is it for?
+## Who is it for?
 
 Anyone who feels like the standard svn command is missing some features and wants a slightly more powerful command-line svn tool...
 
 Anyone who wants to hack/extend the svn command but is afraid to/too lazy to mess with the actual C source code...
 
-== Installation
+## Installation
 
-=== Dependencies
+### Dependencies
 
 * colored
 * escape
@@ -32,7 +32,7 @@ Anyone who wants to hack/extend the svn command but is afraid to/too lazy to mes
 * termios (recommended, but no longer required)
 * win32console (Windows only, required for colored to work)
 
-=== Installation
+### Installation
 
 * Install the gem (once per _system_):
 
@@ -63,14 +63,14 @@ attempt to do the following (or you can do this manually):
   _subwrap_post_install will copy 'c:/ruby/bin/subwrap.cmd' to 'c:/ruby/bin/svn.cmd' so that when you type svn from the command line, it will actually
   run <tt>c:/ruby/bin/svn.cmd</tt>.
  
-=== Check to see if it's working
+### Check to see if it's working
 
 You'll know it's working by way of two signs:
 * Your +svn+ command will be noticeably slower
 * When you type svn <tt>help</tt>, it will say:
     You are using subwrap, a replacement/wrapper for the standard svn command.
 
-== Features
+## Features
 
 Changes to existing subcommands:
 * <b><tt>svn diff</tt></b>
@@ -98,9 +98,9 @@ New subcommands:
 
 (RDoc question: how do I make the identifiers like Subversion::SvnCommand#externalize into links??)
 
-= Usage / Examples
+# Usage / Examples
 
-== <tt>svn each_unadded</tt>
+## <tt>svn each_unadded</tt>
 
 This command is useful for keeping your working copies clean -- getting rid of all those accumulated temp files (or *ignoring* or *adding* them if they're something that _all_ users of this repository should be aware of).
 
@@ -126,7 +126,7 @@ It simply goes through each "unadded" file (each file reporting a status of <tt>
 
 For *files*, it will show a preview of the _contents_ of that file (limited to the first 55 lines); for *directories*, it will show a _directory_ _listing_. By looking at the preview, you should hopefully be able to decide whether you want to _keep_ the file or _junk_ it.
 
-== <tt>svn whats_new</tt> (replacement for <tt>svn update</tt>)
+## <tt>svn whats_new</tt> (replacement for <tt>svn update</tt>)
 
 Whereas <tt>svn update</tt> <i>only</i> updates (merges) with the latest changes and shows you which files were updated/etc., <tt>svn whats_new</tt>:
 * updates (merges) with the latest changes
@@ -140,7 +140,7 @@ Tip: When actively working on a project with lots of frequent committers, I like
 * to grab the latest changes from everyone else on the team, and 
 * to skim through their changes to see what's changed.
 
-== <tt>svn browse</tt> (revisions browser)
+## <tt>svn browse</tt> (revisions browser)
 
 Lets you interactively browse through all revisions of a file/directory/repository (one at a time). For each revision, it will ask you what you want to do with it (view the changeset, edit revision properties, etc.).
 
@@ -163,7 +163,7 @@ Defaults to latest-first, but you can pass it the <tt>--forwards</tt> flag to br
 
 (*The mark-as-reviewed feature requires the modification of your repository's pre-revprop-change hook.)
 
-== <tt>svn status</tt>
+## <tt>svn status</tt>
 
 _Without_ this gem installed (really long):
 
@@ -203,7 +203,7 @@ _Without_ this gem installed (really long):
   A      gemables/subversion/bin/svn
   M      applications/underlord/vendor/plugins/rails_smith/tasks/shared/base.rake
 
-==<tt>svn externalize</tt> / <tt>externals</tt> / <tt>edit_externals</tt>
+##<tt>svn externalize</tt> / <tt>externals</tt> / <tt>edit_externals</tt>
 
 Shortcut for creating an svn:external...
 
@@ -239,7 +239,7 @@ You can also pass a directory name to edit_externals to edit the svn:externals p
 
   > svn edit-externals vendor/plugins
 
-==<tt>svn get_message</tt> / <tt>set_message</tt> / <tt>edit_message</tt>
+##<tt>svn get_message</tt> / <tt>set_message</tt> / <tt>edit_message</tt>
 
 <b>Pre-requisite for set_message/edit_message</b>: Your repository must have a <tt>pre-revprop-change</tt> hook file.
 
@@ -258,7 +258,7 @@ You can do this:
 or just this:
   svn edit_message
 
-== <tt>svn ignore</tt>
+## <tt>svn ignore</tt>
 
 If you want to add '*' to the list of ignored files for a directory, be sure to enclose the argument in single quotes (<tt>'</tt>) so that the shell doesn't expand the <tt>*</tt> symbol for you.
 
@@ -266,7 +266,7 @@ Example:
 
   svn ignore 'tmp/sessions/*'
 
-== <tt>svn move</tt>
+## <tt>svn move</tt>
 
 You can now do commands like this:
 
@@ -275,9 +275,9 @@ You can now do commands like this:
 
 (The _standard_ +svn+ command only accepts a _single_ source and a _single_ destination!)
 
-== <tt>svn commit</tt>
+## <tt>svn commit</tt>
 
-=== --skip-notification / --covert
+### --skip-notification / --covert
 
 Added a --skip-notification / --covert option which (assuming you have your post-commit hook set up to do this), will suppress the sending out of a commit notification e-mail.
 
@@ -328,18 +328,18 @@ For this option to have any effect, you will need to set up your repository simi
 
 
 
-==Help
+##Help
 
 You can, of course, get a lits of the custom commands that have been added by using <tt>svn help</tt>. They will be listed at the end.
 
-==Global options
+##Global options
 
 * --no-color (since color is on by default)
 * --dry-run  (see what /usr/bin/svn command it _would_ have executed if you weren't just doing a dry run -- useful for debugging if nothing else)
 * --print-commands (prints out the /usr/bin/svn commands before executing them)
 * --debug    (sets $debug = true)
 
-==Requirement: <tt>colordiff</tt>
+##Requirement: <tt>colordiff</tt>
 
 +colordiff+ is used to colorize <tt>svn diff</tt> commands (+ lines are blue; - lines are red)
 
@@ -354,7 +354,7 @@ Suggestion: change the colors in <tt>/etc/colordiffrc</tt> to be more readable:
   diffstuff=cyan
   cvsstuff=magenta
 
-==A workaround for the <tt>Commit failed; Your file or directory 'some file' is probably out-of-date</tt> problem==
+##A workaround for the <tt>Commit failed; Your file or directory 'some file' is probably out-of-date</tt> problem##
 
   svn: Commit failed (details follow):
   svn: Your file or directory 'some file' is probably out-of-date
@@ -371,7 +371,7 @@ It must have something to do with something in the .svn directories not matching
 Anyway, the <tt>svn fix_out_of_date_commit_state</tt> command attempts to automate most of that process for you.
 
 
-==Bash command completion
+##Bash command completion
 
 If you want command completion for the svn subcommands (and I don't blame you if you don't -- the default command completion is <i>much faster</i> and already gives you completion for filenames!), just add this line to your <tt>~/.bashrc</tt> :
 
@@ -379,15 +379,15 @@ If you want command completion for the svn subcommands (and I don't blame you if
 
 It's really rudimentary right now and could be much improved, but at least it's a start.
 
-==Support for code reviews, commit notification, and continuous integration systems
+##Support for code reviews, commit notification, and continuous integration systems
 
 The <tt>svn revisions</tt> command lets you browse through recent changes to a project or directory and then, for each revision that you review, you can simply press R and it will mark that revision as reviewed.
 
 <tt>svn commit</tt> accepts two custom flags, <tt>--skip-notification / --covert</tt> (don't send commit notification) and <tt>--broken</tt> (tell the continuous integration system to expect failure).
 
-=Other
+#Other
 
-==Known problems
+##Known problems
 
 It doesn't support options that are given in this format:
   --diff-cmd=colordiff
@@ -414,7 +414,7 @@ or
   > /usr/bin/svn propget svn:skip_commit_notification_for_next_commit --revprop -r 2498 http://code.qualitysmith.com/
 
 
-=== Slowness
+### Slowness
 
 Is it slower than just running /usr/bin/svn directly? You betcha it is!
 
@@ -426,7 +426,7 @@ Is it slower than just running /usr/bin/svn directly? You betcha it is!
 
 But... as with most things written in Ruby, it's all more about *productivity* than raw execution speed. _Hopefully_ the productivity gains you get from using this wrapper will more than make up for the 0.5 s extra you have to wait for the svn command. :-) If not, I guess it's not for you.
 
-==To do
+##To do
 
 Drop dependency on colordiff and use a native ruby colorizer that works on top of standard diff output. That may be necessary to support following change:
 
@@ -471,7 +471,7 @@ After you save/edit/set an svn:externals, it should try to automatically pretty 
 
 Get everything that was on http://wiki.qualitysmith.com/subwrap
 
-===Ideas from TortoiseSvn
+###Ideas from TortoiseSvn
 
 When you drag and drop one or more files to a WC directory, it prompts you with a context menu with these options:
 * svn move versioned files here
@@ -481,7 +481,7 @@ When you drag and drop one or more files to a WC directory, it prompts you with 
 * svn export to here
 * svn export all to here
 
-===Name ideas
+###Name ideas
 
 Word ideas to possibly incorporate:
 * improved
@@ -493,6 +493,6 @@ Word ideas to possibly incorporate:
 
 * 'subwrap'? Short for "Subversion wrapper". Also, a play on the words sub and wrap -- both of which are also food items.
 
-==Contact me!
+##Contact me!
 
 If you have any comments, suggestions, or patches, I would love to hear them! You'd be surprised how open I am to considering small or even massive changes to this project.
