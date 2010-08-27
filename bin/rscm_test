@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'rscm'
+require 'pp'
+
+#scm = RSCM::Subversion.new("http://code.qualitysmith.com/gemables")
+
+subversion = RSCM::Subversion.new()
+subversion.checkout_dir = '.'
+puts "working copy revision = #{subversion.label}"
+puts "url = #{subversion.repourl}"
+puts "up to date? = #{subversion.uptodate?(nil)}"
+
+
+#revisions = scm.revisions(Time.utc(2007, 01, 10, 12, 34, 22)) # For Subversion, you can also pass a revision number (int)
+#revisions.each do |revision|
+#  pp revision
+#end

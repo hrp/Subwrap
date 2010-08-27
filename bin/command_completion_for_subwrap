@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'facets/kernel/load'
+require_local '../lib/subwrap/svn_command'
+
+subcommands = (Subversion::SvnCommand.public_instance_methods - Object.methods).sort
+
+# COMP_LINE will be something like 'svn sta' (what they started to type).
+exit 0 unless /^svn\b/ =~ ENV["COMP_LINE"]
+after_match = $'
+
+# Since we only want our custom completion for the first argument passed to svn (because we want it to fall back to using default completion for all subsequent args), we need to check what the COMP_LINE is:
+exit 0 if /^svn\s[\w=-]* / =~ ENV["COMP_LINE"]
+# 'svn --diff-cmd=whatever ' =~ /^svn\b [\w=-]* / => 0
+
+subcommand_match = (after_match.empty? || after_match =~ /\s$/) ? nil : after_match.split.last
+subcommands = subcommands.select { |t| /^#{Regexp.escape subcommand_match}/ =~ t } if subcommand_match
+
+puts subcommands
+exit 0

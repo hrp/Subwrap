@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+gem 'quality_extensions'
+require 'quality_extensions/kernel/windows_platform'
+
+require 'fileutils'
+if ARGV.include?('--dry-run')
+  include FileUtils::DryRun
+else
+  include FileUtils::Verbose
+end
+
+if windows_platform?
+  #cp __FILE__, 'c:/ruby/bin'
+  cp 'c:/ruby/bin/subwrap.cmd', 'c:/ruby/bin/svn.cmd'
+  #puts Gem.cache.search('subwrap').sort_by { |g| g.version.version }.last.full_gem_path
+else
+  gemdir = `gem env gemdir`.chomp
+  path_to_add = "`ls -dt --color=never #{gemdir}/gems/subwrap* | head -n1`/bin"
+  puts "Adding #{path_to_add} to your path..."
+  path_command = "export PATH=#{path_to_add}:$PATH"
+  system "grep gems/subwrap ~/.bash_profile || " +
+         "echo '#{path_command}' >> ~/.bash_profile"
+  puts
+
+  puts 'Making the svn binary executable (you probably need to run this as sudo to do this)...'
+  bin_dir = File.expand_path(File.dirname(__FILE__))
+  chmod 0755, Dir["#{bin_dir}/*"]
+  puts 'Done'
+
+end
+

@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+#require 'rubygems'
+#gem 'facets', '>=2.4.1'
+#require 'facets/kernel/load'
+
+$LOAD_PATH << File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'subwrap/svn_command.rb'
+Subversion::SvnCommand.execute
