@@ -4,14 +4,14 @@ link:include/subwrap.jpg
 [<b>Home page</b>:]        http://subwrap.rubyforge.org/
 [<b>Project site</b>:]     http://rubyforge.org/projects/subwrap
 [<b>Suggestions?</b>:]     http://subwrap.uservoice.com
-[<b>Gem install</b>:]      <tt>gem install subwrap</tt>
+[<b>Gem install</b>:]      `gem install subwrap`
 [<b>Author</b>:]           Tyler Rick (<rubyforge.org|tylerrick.com>)
 [<b>Copyright</b>:]        2007 QualitySmith, Inc.
 [<b>License</b>:]          {GNU General Public License}[http://www.gnu.org/copyleft/gpl.html]
 
 ## What is it? 
 
-This is a replacement <b><tt>svn</tt> command-line client</b> meant to be used instead of the standard +svn+ command. (Actually, it's a _wrapper_, not a strict replacement, because it still uses <tt>/usr/bin/svn</tt> to do all the dirty work.)
+This is a replacement <b>`svn` command-line client</b> meant to be used instead of the standard +svn+ command. (Actually, it's a _wrapper_, not a strict replacement, because it still uses `/usr/bin/svn` to do all the dirty work.)
 
 ## Who is it for?
 
@@ -39,72 +39,72 @@ Anyone who wants to hack/extend the svn command but is afraid to/too lazy to mes
   sudo gem install subwrap --include-dependencies
 
 The command will now be available immediately by typing +subwrap+ instead of +svn+. If you'd like to actually *replace* the standard +svn+ command (that
-is, if you'd like to be able to run it simply by typing +svn+), then you you will also need to run <tt>sudo _subwrap_post_install</tt>, which will
+is, if you'd like to be able to run it simply by typing +svn+), then you you will also need to run `sudo _subwrap_post_install`, which will
 attempt to do the following (or you can do this manually):
 
 * (Linux only:) Make the svn wrapper command *executable*:
 
     sudo chmod a+x /usr/lib/ruby/gems/1.8/gems/subwrap*/bin/*
 
-  (Why can't we just set <tt>executables = "svn"</tt> in the gemspec and have it automatically install it to /usr/bin? Because that would cause it to <b>wipe out</b> the existing executable at <tt>/usr/bin/svn</tt>! If you know of a better, more automatic solution to this, please let me know!)
+  (Why can't we just set `executables = "svn"` in the gemspec and have it automatically install it to /usr/bin? Because that would cause it to <b>wipe out</b> the existing executable at `/usr/bin/svn`! If you know of a better, more automatic solution to this, please let me know!)
 
-* (Linux only:) Next, you need to add the gem's +bin+ directory to be added to the <b><i>front</i></b> of your path (once per _user_). You may run <tt>_subwrap_post_install</tt> and let it attempt to do this for you, or you can do it manually:
+* (Linux only:) Next, you need to add the gem's +bin+ directory to be added to the <b><i>front</i></b> of your path (once per _user_). You may run `_subwrap_post_install` and let it attempt to do this for you, or you can do it manually:
 
 
-* Add a <tt>PATH=</tt> command to your <tt>~/.bash_profile</tt> (or equivalent). For example:
+* Add a `PATH=` command to your `~/.bash_profile` (or equivalent). For example:
 
     export PATH=`ls -dt --color=never /usr/lib/ruby/gems/1.8/gems/subwrap* | head -n1`/bin:$PATH"
 
-  (You will need to source your <tt>~/.bash_profile</tt> after modifying it in order for bash to detect the new path to the svn command.)
+  (You will need to source your `~/.bash_profile` after modifying it in order for bash to detect the new path to the svn command.)
 
-* (Windows only:) Make sure <tt>C:\ruby\bin</tt> (or wherever rubygems installs executables for gems) appears in the path before
-  <tt>C:\Program Files\Subversion\bin</tt> (or wherever your svn binary is).
+* (Windows only:) Make sure `C:\ruby\bin` (or wherever rubygems installs executables for gems) appears in the path before
+  `C:\Program Files\Subversion\bin` (or wherever your svn binary is).
 
   _subwrap_post_install will copy 'c:/ruby/bin/subwrap.cmd' to 'c:/ruby/bin/svn.cmd' so that when you type svn from the command line, it will actually
-  run <tt>c:/ruby/bin/svn.cmd</tt>.
+  run `c:/ruby/bin/svn.cmd`.
  
 ### Check to see if it's working
 
 You'll know it's working by way of two signs:
 * Your +svn+ command will be noticeably slower
-* When you type svn <tt>help</tt>, it will say:
+* When you type svn `help`, it will say:
     You are using subwrap, a replacement/wrapper for the standard svn command.
 
 ## Features
 
 Changes to existing subcommands:
-* <b><tt>svn diff</tt></b>
+* <b>`svn diff`</b>
   * output is in _color_* (requires +colordiff+, see below)
-  * <tt>svn diff</tt> includes the differences from your *externals* too (consistent with how <tt>svn status</tt> includes them) so that you don't forget to commit those changes too! (pass <tt>--ignore-externals</tt> if you _don't_ want a diff of externals)
-* <b><tt>svn status</tt></b>
+  * `svn diff` includes the differences from your *externals* too (consistent with how `svn status` includes them) so that you don't forget to commit those changes too! (pass `--ignore-externals` if you _don't_ want a diff of externals)
+* <b>`svn status`</b>
   * filters out distracting, useless output about externals (don't worry -- it still shows which files were _modified_)
   * the flags (?, M, C, etc.) are in *color*!
-* <b><tt>svn move</tt></b> it will let you move multiple source files to a destination directory with a single command
+* <b>`svn move`</b> it will let you move multiple source files to a destination directory with a single command
 
 (* You can pass --no-color to disable colors for a single command...useful if you want to pipe the output to another command or something. Eventually maybe we could make this a per-user option via .subwrap?)
 
 New subcommands:
-* <b><tt>svn each_unadded</tt></b> (+eu+, +unadded+) -- goes through each unadded (<tt>?</tt>) file reported by <tt>svn status</tt> and asks you what to do with them (add, delete, ignore).
-* <b><tt>svn revisions</tt></b> -- lists all revisions with log messages and lets you browse through them interactively
-* <b><tt>svn externals</tt></b> -- lists all externals
-* <b><tt>svn edit_externals</tt></b> (+ee+)
-* <b><tt>svn externalize</tt></b>
-* <b><tt>svn set_message</tt></b> / <tt>svn get_message</tt> / <tt>svn edit_message</tt> -- shortcuts for accessing <tt>--revprop svn:log</tt>
-* <b><tt>svn ignore</tt></b> -- shortcut for accessing <tt>svn:ignore</tt> property
-* <b><tt>svn view_commits</tt></b> -- gives you output from both <tt>svn log</tt> and from <tt>svn diff</tt> for the given changesets (useful for code reviews)
-* <b><tt>svn url</tt></b> -- prints out the URL of the given working copy path or the curretn working copy
-* <b><tt>svn repository_root</tt></b> -- prints out the root repository URL of the working copy you are in
-* <b><tt>svn delete_svn</tt></b> -- causes the current directory (recursively) to no longer be a working copy
+* <b>`svn each_unadded`</b> (+eu+, +unadded+) -- goes through each unadded (`?`) file reported by `svn status` and asks you what to do with them (add, delete, ignore).
+* <b>`svn revisions`</b> -- lists all revisions with log messages and lets you browse through them interactively
+* <b>`svn externals`</b> -- lists all externals
+* <b>`svn edit_externals`</b> (+ee+)
+* <b>`svn externalize`</b>
+* <b>`svn set_message`</b> / `svn get_message` / `svn edit_message` -- shortcuts for accessing `--revprop svn:log`
+* <b>`svn ignore`</b> -- shortcut for accessing `svn:ignore` property
+* <b>`svn view_commits`</b> -- gives you output from both `svn log` and from `svn diff` for the given changesets (useful for code reviews)
+* <b>`svn url`</b> -- prints out the URL of the given working copy path or the curretn working copy
+* <b>`svn repository_root`</b> -- prints out the root repository URL of the working copy you are in
+* <b>`svn delete_svn`</b> -- causes the current directory (recursively) to no longer be a working copy
 
 (RDoc question: how do I make the identifiers like Subversion::SvnCommand#externalize into links??)
 
 # Usage / Examples
 
-## <tt>svn each_unadded</tt>
+## `svn each_unadded`
 
 This command is useful for keeping your working copies clean -- getting rid of all those accumulated temp files (or *ignoring* or *adding* them if they're something that _all_ users of this repository should be aware of).
 
-It simply goes through each "unadded" file (each file reporting a status of <tt>?</tt>) reported by <tt>svn status</tt> and asks you what you want to do with them -- *add*, *delete*, or *ignore*.
+It simply goes through each "unadded" file (each file reporting a status of `?`) reported by `svn status` and asks you what you want to do with them -- *add*, *delete*, or *ignore*.
 
   > svn each_unadded
 
@@ -126,44 +126,44 @@ It simply goes through each "unadded" file (each file reporting a status of <tt>
 
 For *files*, it will show a preview of the _contents_ of that file (limited to the first 55 lines); for *directories*, it will show a _directory_ _listing_. By looking at the preview, you should hopefully be able to decide whether you want to _keep_ the file or _junk_ it.
 
-## <tt>svn whats_new</tt> (replacement for <tt>svn update</tt>)
+## `svn whats_new` (replacement for `svn update`)
 
-Whereas <tt>svn update</tt> <i>only</i> updates (merges) with the latest changes and shows you which files were updated/etc., <tt>svn whats_new</tt>:
+Whereas `svn update` <i>only</i> updates (merges) with the latest changes and shows you which files were updated/etc., `svn whats_new`:
 * updates (merges) with the latest changes
 * shows you a summary of which files were updated/added/removed/conflict (:todo:)
 * shows the commit messages for each change_set [since you last ran this command :todo:]
 * shows the actual changes (diffs) that were made for every file in the 
 
-It's a lot like <tt>svn browse</tt> (and in fact shares most of the same code with it), except it's <i>non-interactive</i>, so you just run it and then sit back and watch all the pretty output -- which is a good thing, because doing a diff for each changeset can take a long time...
+It's a lot like `svn browse` (and in fact shares most of the same code with it), except it's <i>non-interactive</i>, so you just run it and then sit back and watch all the pretty output -- which is a good thing, because doing a diff for each changeset can take a long time...
 
-Tip: When actively working on a project with lots of frequent committers, I like to keep a separate tab open in my terminal where I periodicaly run <tt>svn whats_new</tt>:
+Tip: When actively working on a project with lots of frequent committers, I like to keep a separate tab open in my terminal where I periodicaly run `svn whats_new`:
 * to grab the latest changes from everyone else on the team, and 
 * to skim through their changes to see what's changed.
 
-## <tt>svn browse</tt> (revisions browser)
+## `svn browse` (revisions browser)
 
 Lets you interactively browse through all revisions of a file/directory/repository (one at a time). For each revision, it will ask you what you want to do with it (view the changeset, edit revision properties, etc.).
 
 Screenshot:
 link:include/svn_revisions.png
 
-It's sort of like <tt>svn log | less</tt>, only it's interactive, it's in color, and it's just plain more useful!
+It's sort of like `svn log | less`, only it's interactive, it's in color, and it's just plain more useful!
 
 You can step through the revisions using the arrow keys or Enter. 
 
 Here are a couple things you might use it for:
 * <b>View the history of a certain file</b>.
-  * Rather than looking at <tt>svn log -v</tt> (which can be _huge_) directly and then manually calculating revision numbers and doing things like <tt>svn diff -r1492:1493</tt> over and over, you can simply start up <tt>svn revisions</tt>, browse to the revision you're interested in using the Up/Down arrow keys, and press D to get a diff for the selected changeset.
+  * Rather than looking at `svn log -v` (which can be _huge_) directly and then manually calculating revision numbers and doing things like `svn diff -r1492:1493` over and over, you can simply start up `svn revisions`, browse to the revision you're interested in using the Up/Down arrow keys, and press D to get a diff for the selected changeset.
 * <b>See what's been committed since the last public release</b>. So that you can list it in your release notes, for example...
 * <b>Review other people's code</b>. (There's even a mark-as-reviewed feature*, if you want to keep track of which revisions have been reviewed...)
 * <b>Search for a change you know you've _made_</b> but just don't remember what revision it was in. (Hint: Use the "grep this changeset" feature.)
 * Figure out what the <b>difference is between two branches</b>.
 
-Defaults to latest-first, but you can pass it the <tt>--forwards</tt> flag to browse from the other direction (start at the <i>oldest revision</i> and step forwards through time).
+Defaults to latest-first, but you can pass it the `--forwards` flag to browse from the other direction (start at the <i>oldest revision</i> and step forwards through time).
 
 (*The mark-as-reviewed feature requires the modification of your repository's pre-revprop-change hook.)
 
-## <tt>svn status</tt>
+## `svn status`
 
 _Without_ this gem installed (really long):
 
@@ -203,7 +203,7 @@ _Without_ this gem installed (really long):
   A      gemables/subversion/bin/svn
   M      applications/underlord/vendor/plugins/rails_smith/tasks/shared/base.rake
 
-##<tt>svn externalize</tt> / <tt>externals</tt> / <tt>edit_externals</tt>
+##`svn externalize` / `externals` / `edit_externals`
 
 Shortcut for creating an svn:external...
 
@@ -239,9 +239,9 @@ You can also pass a directory name to edit_externals to edit the svn:externals p
 
   > svn edit-externals vendor/plugins
 
-##<tt>svn get_message</tt> / <tt>set_message</tt> / <tt>edit_message</tt>
+##`svn get_message` / `set_message` / `edit_message`
 
-<b>Pre-requisite for set_message/edit_message</b>: Your repository must have a <tt>pre-revprop-change</tt> hook file.
+<b>Pre-requisite for set_message/edit_message</b>: Your repository must have a `pre-revprop-change` hook file.
 
 Useful if you made a mistake or forgot something in your commit message and want to edit it... 
 
@@ -258,15 +258,15 @@ You can do this:
 or just this:
   svn edit_message
 
-## <tt>svn ignore</tt>
+## `svn ignore`
 
-If you want to add '*' to the list of ignored files for a directory, be sure to enclose the argument in single quotes (<tt>'</tt>) so that the shell doesn't expand the <tt>*</tt> symbol for you.
+If you want to add '*' to the list of ignored files for a directory, be sure to enclose the argument in single quotes (`'`) so that the shell doesn't expand the `*` symbol for you.
 
 Example:
 
   svn ignore 'tmp/sessions/*'
 
-## <tt>svn move</tt>
+## `svn move`
 
 You can now do commands like this:
 
@@ -275,7 +275,7 @@ You can now do commands like this:
 
 (The _standard_ +svn+ command only accepts a _single_ source and a _single_ destination!)
 
-## <tt>svn commit</tt>
+## `svn commit`
 
 ### --skip-notification / --covert
 
@@ -330,7 +330,7 @@ For this option to have any effect, you will need to set up your repository simi
 
 ##Help
 
-You can, of course, get a lits of the custom commands that have been added by using <tt>svn help</tt>. They will be listed at the end.
+You can, of course, get a lits of the custom commands that have been added by using `svn help`. They will be listed at the end.
 
 ##Global options
 
@@ -339,22 +339,22 @@ You can, of course, get a lits of the custom commands that have been added by us
 * --print-commands (prints out the /usr/bin/svn commands before executing them)
 * --debug    (sets $debug = true)
 
-##Requirement: <tt>colordiff</tt>
+##Requirement: `colordiff`
 
-+colordiff+ is used to colorize <tt>svn diff</tt> commands (+ lines are blue; - lines are red)
++colordiff+ is used to colorize `svn diff` commands (+ lines are blue; - lines are red)
 
 Found at:
 * http://www.pjhyett.com/articles/2006/06/16/colored-svn-diff
 * http://colordiff.sourceforge.net/
 
-Suggestion: change the colors in <tt>/etc/colordiffrc</tt> to be more readable:
+Suggestion: change the colors in `/etc/colordiffrc` to be more readable:
   plain=white
   newtext=green
   oldtext=red
   diffstuff=cyan
   cvsstuff=magenta
 
-##A workaround for the <tt>Commit failed; Your file or directory 'some file' is probably out-of-date</tt> problem##
+##A workaround for the `Commit failed; Your file or directory 'some file' is probably out-of-date` problem##
 
   svn: Commit failed (details follow):
   svn: Your file or directory 'some file' is probably out-of-date
@@ -368,12 +368,12 @@ The only way I've found to resolve this problem is to delete the entire director
 
 It must have something to do with something in the .svn directories not matching up the way that svn expects.
 
-Anyway, the <tt>svn fix_out_of_date_commit_state</tt> command attempts to automate most of that process for you.
+Anyway, the `svn fix_out_of_date_commit_state` command attempts to automate most of that process for you.
 
 
 ##Bash command completion
 
-If you want command completion for the svn subcommands (and I don't blame you if you don't -- the default command completion is <i>much faster</i> and already gives you completion for filenames!), just add this line to your <tt>~/.bashrc</tt> :
+If you want command completion for the svn subcommands (and I don't blame you if you don't -- the default command completion is <i>much faster</i> and already gives you completion for filenames!), just add this line to your `~/.bashrc` :
 
   complete -C /usr/bin/command_completion_for_subwrap -o default svn
 
@@ -381,9 +381,9 @@ It's really rudimentary right now and could be much improved, but at least it's 
 
 ##Support for code reviews, commit notification, and continuous integration systems
 
-The <tt>svn revisions</tt> command lets you browse through recent changes to a project or directory and then, for each revision that you review, you can simply press R and it will mark that revision as reviewed.
+The `svn revisions` command lets you browse through recent changes to a project or directory and then, for each revision that you review, you can simply press R and it will mark that revision as reviewed.
 
-<tt>svn commit</tt> accepts two custom flags, <tt>--skip-notification / --covert</tt> (don't send commit notification) and <tt>--broken</tt> (tell the continuous integration system to expect failure).
+`svn commit` accepts two custom flags, `--skip-notification / --covert` (don't send commit notification) and `--broken` (tell the continuous integration system to expect failure).
 
 #Other
 
