@@ -1,16 +1,16 @@
 # <i>Subwrap</i> -- an enhanced +svn+ command
 
-* <b>Home page</b>: http://subwrap.rubyforge.org/
-* <b>Project site</b>: http://rubyforge.org/projects/subwrap
-* <b>Suggestions?</b>: http://subwrap.uservoice.com
-* <b>Gem install</b>: `gem install subwrap`
-* <b>Author</b>: Tyler Rick (<http://tylerrick.com>)
-* <b>Copyright</b>: 2007 QualitySmith, Inc.
-* <b>License</b>: [GNU General Public License](http://www.gnu.org/copyleft/gpl.html)
+* **Home page**: http://subwrap.rubyforge.org/
+* **Project site**: http://rubyforge.org/projects/subwrap
+* **Suggestions?**: http://subwrap.uservoice.com
+* **Gem install**: `gem install subwrap`
+* **Author**: Tyler Rick (<http://tylerrick.com>)
+* **Copyright**: 2007 QualitySmith, Inc.
+* **License**: [GNU General Public License](http://www.gnu.org/copyleft/gpl.html)
 
 ## What is it? 
 
-This is a replacement <b>`svn` command-line client</b> meant to be used instead of the standard +svn+ command. (Actually, it's a _wrapper_, not a strict replacement, because it still uses `/usr/bin/svn` to do all the dirty work.)
+This is a replacement **`svn` command-line client** meant to be used instead of the standard +svn+ command. (Actually, it's a _wrapper_, not a strict replacement, because it still uses `/usr/bin/svn` to do all the dirty work.)
 
 ## Who is it for?
 
@@ -45,9 +45,9 @@ attempt to do the following (or you can do this manually):
 
     sudo chmod a+x /usr/lib/ruby/gems/1.8/gems/subwrap*/bin/*
 
-  (Why can't we just set `executables = "svn"` in the gemspec and have it automatically install it to /usr/bin? Because that would cause it to <b>wipe out</b> the existing executable at `/usr/bin/svn`! If you know of a better, more automatic solution to this, please let me know!)
+  (Why can't we just set `executables = "svn"` in the gemspec and have it automatically install it to /usr/bin? Because that would cause it to **wipe out** the existing executable at `/usr/bin/svn`! If you know of a better, more automatic solution to this, please let me know!)
 
-* (Linux only:) Next, you need to add the gem's +bin+ directory to be added to the <b><i>front</i></b> of your path (once per _user_). You may run `_subwrap_post_install` and let it attempt to do this for you, or you can do it manually:
+* (Linux only:) Next, you need to add the gem's +bin+ directory to be added to the **<i>front</i>** of your path (once per _user_). You may run `_subwrap_post_install` and let it attempt to do this for you, or you can do it manually:
 
 
 * Add a `PATH=` command to your `~/.bash_profile` (or equivalent). For example:
@@ -73,30 +73,30 @@ You'll know it's working by way of two signs:
 
 #### Changes to existing subcommands:
 
-* <b>`svn diff`</b>
+* **`svn diff`**
    output is in _color_ (requires +colordiff+, see below)
    `svn diff` includes the differences from your *externals* too (consistent with how `svn status` includes them) so that you don't forget to commit those changes too! (pass `--ignore-externals` if you _don't_ want a diff of externals)
-* <b>`svn status`</b>
+* **`svn status`**
    filters out distracting, useless output about externals (don't worry -- it still shows which files were _modified_)
    the flags (?, M, C, etc.) are in *color*!
-* <b>`svn move`</b> it will let you move multiple source files to a destination directory with a single command
+* **`svn move`** it will let you move multiple source files to a destination directory with a single command
 
 (* You can pass --no-color to disable colors for a single command...useful if you want to pipe the output to another command or something. Eventually maybe we could make this a per-user option via .subwrap?)
 
 #### New subcommands:
 
-* <b>`svn each_unadded`</b> (+eu+, +unadded+) -- goes through each unadded (`?`) file reported by `svn status` and asks you what to do with them (add, delete, ignore).
+* **`svn each_unadded`** (+eu+, +unadded+) -- goes through each unadded (`?`) file reported by `svn status` and asks you what to do with them (add, delete, ignore).
 
-* <b>`svn revisions`</b> -- lists all revisions with log messages and lets you browse through them interactively
-* <b>`svn externals`</b> -- lists all externals
-* <b>`svn edit_externals`</b> (+ee+)
-* <b>`svn externalize`</b>
-* <b>`svn set_message`</b> / `svn get_message` / `svn edit_message` -- shortcuts for accessing `--revprop svn:log`
-* <b>`svn ignore`</b> -- shortcut for accessing `svn:ignore` property
-* <b>`svn view_commits`</b> -- gives you output from both `svn log` and from `svn diff` for the given changesets (useful for code reviews)
-* <b>`svn url`</b> -- prints out the URL of the given working copy path or the curretn working copy
-* <b>`svn repository_root`</b> -- prints out the root repository URL of the working copy you are in
-* <b>`svn delete_svn`</b> -- causes the current directory (recursively) to no longer be a working copy
+* **`svn revisions`** -- lists all revisions with log messages and lets you browse through them interactively
+* **`svn externals`** -- lists all externals
+* **`svn edit_externals`** (+ee+)
+* **`svn externalize`**
+* **`svn set_message`** / `svn get_message` / `svn edit_message` -- shortcuts for accessing `--revprop svn:log`
+* **`svn ignore`** -- shortcut for accessing `svn:ignore` property
+* **`svn view_commits`** -- gives you output from both `svn log` and from `svn diff` for the given changesets (useful for code reviews)
+* **`svn url`** -- prints out the URL of the given working copy path or the curretn working copy
+* **`svn repository_root`** -- prints out the root repository URL of the working copy you are in
+* **`svn delete_svn`** -- causes the current directory (recursively) to no longer be a working copy
 
 (RDoc question: how do I make the identifiers like Subversion::SvnCommand#externalize into links??)
 
@@ -154,12 +154,12 @@ It's sort of like `svn log | less`, only it's interactive, it's in color, and it
 You can step through the revisions using the arrow keys or Enter. 
 
 Here are a couple things you might use it for:
-* <b>View the history of a certain file</b>.
+* **View the history of a certain file**.
   * Rather than looking at `svn log -v` (which can be _huge_) directly and then manually calculating revision numbers and doing things like `svn diff -r1492:1493` over and over, you can simply start up `svn revisions`, browse to the revision you're interested in using the Up/Down arrow keys, and press D to get a diff for the selected changeset.
-* <b>See what's been committed since the last public release</b>. So that you can list it in your release notes, for example...
-* <b>Review other people's code</b>. (There's even a mark-as-reviewed feature*, if you want to keep track of which revisions have been reviewed...)
-* <b>Search for a change you know you've _made_</b> but just don't remember what revision it was in. (Hint: Use the "grep this changeset" feature.)
-* Figure out what the <b>difference is between two branches</b>.
+* **See what's been committed since the last public release**. So that you can list it in your release notes, for example...
+* **Review other people's code**. (There's even a mark-as-reviewed feature*, if you want to keep track of which revisions have been reviewed...)
+* **Search for a change you know you've _made_** but just don't remember what revision it was in. (Hint: Use the "grep this changeset" feature.)
+* Figure out what the **difference is between two branches**.
 
 Defaults to latest-first, but you can pass it the `--forwards` flag to browse from the other direction (start at the <i>oldest revision</i> and step forwards through time).
 
@@ -196,7 +196,7 @@ _Without_ this gem installed (really long):
   Performing status on external item at 'applications/underlord/vendor/plugins/rails_smith/tasks/shared'
   M      applications/underlord/vendor/plugins/rails_smith/tasks/shared/base.rake
 
-<b>_With_</b> this gem installed (_much_ shorter and sweeter):
+**_With_** this gem installed (_much_ shorter and sweeter):
 
   ?      gemables/subversion/ruby_subversion.rb
    M     gemables/subversion
@@ -243,7 +243,7 @@ You can also pass a directory name to edit_externals to edit the svn:externals p
 
 ##`svn get_message` / `set_message` / `edit_message`
 
-<b>Pre-requisite for set_message/edit_message</b>: Your repository must have a `pre-revprop-change` hook file.
+**Pre-requisite for set_message/edit_message**: Your repository must have a `pre-revprop-change` hook file.
 
 Useful if you made a mistake or forgot something in your commit message and want to edit it... 
 
