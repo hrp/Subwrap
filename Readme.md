@@ -37,8 +37,8 @@ Anyone who wants to hack/extend the svn command but is afraid to/too lazy to mes
 
   sudo gem install subwrap --include-dependencies
 
-The command will now be available immediately by typing +subwrap+ instead of +svn+. If you'd like to actually *replace* the standard +svn+ command (that
-is, if you'd like to be able to run it simply by typing +svn+), then you you will also need to run `sudo _subwrap_post_install`, which will
+The command will now be available immediately by typing `subwrap` instead of `svn`. If you'd like to actually *replace* the standard `svn` command (that
+is, if you'd like to be able to run it simply by typing `svn`), then you you will also need to run `sudo _subwrap_post_install`, which will
 attempt to do the following (or you can do this manually):
 
 * (Linux only:) Make the svn wrapper command *executable*:
@@ -65,7 +65,7 @@ attempt to do the following (or you can do this manually):
 ### Check to see if it's working
 
 You'll know it's working by way of two signs:
-* Your +svn+ command will be noticeably slower
+* Your `svn` command will be noticeably slower
 * When you type svn `help`, it will say:
     You are using subwrap, a replacement/wrapper for the standard svn command.
 
@@ -74,7 +74,7 @@ You'll know it's working by way of two signs:
 #### Changes to existing subcommands:
 
 * **`svn diff`**
-   output is in _color_ (requires +colordiff+, see below)
+   output is in _color_ (requires `colordiff`, see below)
    `svn diff` includes the differences from your *externals* too (consistent with how `svn status` includes them) so that you don't forget to commit those changes too! (pass `--ignore-externals` if you _don't_ want a diff of externals)
 * **`svn status`**
    filters out distracting, useless output about externals (don't worry -- it still shows which files were _modified_)
@@ -85,11 +85,11 @@ You'll know it's working by way of two signs:
 
 #### New subcommands:
 
-* **`svn each_unadded`** (+eu+, +unadded+) -- goes through each unadded (`?`) file reported by `svn status` and asks you what to do with them (add, delete, ignore).
+* **`svn each_unadded`** (`eu`, `unadded`) -- goes through each unadded (`?`) file reported by `svn status` and asks you what to do with them (add, delete, ignore).
 
 * **`svn revisions`** -- lists all revisions with log messages and lets you browse through them interactively
 * **`svn externals`** -- lists all externals
-* **`svn edit_externals`** (+ee+)
+* **`svn edit_externals`** (`ee`)
 * **`svn externalize`**
 * **`svn set_message`** / `svn get_message` / `svn edit_message` -- shortcuts for accessing `--revprop svn:log`
 * **`svn ignore`** -- shortcut for accessing `svn:ignore` property
@@ -235,7 +235,7 @@ Oops, I externalled it in the wrong place!
   /home/tyler/code/plugins/rails_smith
     * subwrap                   http://code.qualitysmith.com/gemables/subwrap
   Do you want to edit svn:externals for this directory? y/N > [y]
-  (remove that line using your favorite editor (which of course is +vim+), save, quit)
+  (remove that line using your favorite editor (which of course is `vim`), save, quit)
 
 You can also pass a directory name to edit_externals to edit the svn:externals property for that directory:
 
@@ -275,7 +275,7 @@ You can now do commands like this:
   svn mv file1 file2 dir
   svn mv dir1/* dir
 
-(The _standard_ +svn+ command only accepts a _single_ source and a _single_ destination!)
+(The _standard_ `svn` command only accepts a _single_ source and a _single_ destination!)
 
 ## `svn commit`
 
@@ -343,7 +343,7 @@ You can, of course, get a lits of the custom commands that have been added by us
 
 ##Requirement: `colordiff`
 
-+colordiff+ is used to colorize `svn diff` commands (+ lines are blue; - lines are red)
+`colordiff` is used to colorize `svn diff` commands (+ lines are blue; - lines are red)
 
 Found at:
 * http://www.pjhyett.com/articles/2006/06/16/colored-svn-diff
