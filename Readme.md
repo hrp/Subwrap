@@ -1,13 +1,12 @@
 # <i>Subwrap</i> -- an enhanced +svn+ command
->  link:include/subwrap.jpg
 
-<b>Home page</b>: http://subwrap.rubyforge.org/
-<b>Project site</b>: http://rubyforge.org/projects/subwrap
-<b>Suggestions?</b>: http://subwrap.uservoice.com
-<b>Gem install</b>: `gem install subwrap`
-<b>Author</b>: Tyler Rick (<http://tylerrick.com>)
-<b>Copyright</b>: 2007 QualitySmith, Inc.
-<b>License</b>: [GNU General Public License](http://www.gnu.org/copyleft/gpl.html)
+* <b>Home page</b>: http://subwrap.rubyforge.org/
+* <b>Project site</b>: http://rubyforge.org/projects/subwrap
+* <b>Suggestions?</b>: http://subwrap.uservoice.com
+* <b>Gem install</b>: `gem install subwrap`
+* <b>Author</b>: Tyler Rick (<http://tylerrick.com>)
+* <b>Copyright</b>: 2007 QualitySmith, Inc.
+* <b>License</b>: [GNU General Public License](http://www.gnu.org/copyleft/gpl.html)
 
 ## What is it? 
 
@@ -72,19 +71,22 @@ You'll know it's working by way of two signs:
 
 ## Features
 
-Changes to existing subcommands:
+#### Changes to existing subcommands:
+
 * <b>`svn diff`</b>
-  * output is in _color_* (requires +colordiff+, see below)
-  * `svn diff` includes the differences from your *externals* too (consistent with how `svn status` includes them) so that you don't forget to commit those changes too! (pass `--ignore-externals` if you _don't_ want a diff of externals)
+   output is in _color_ (requires +colordiff+, see below)
+   `svn diff` includes the differences from your *externals* too (consistent with how `svn status` includes them) so that you don't forget to commit those changes too! (pass `--ignore-externals` if you _don't_ want a diff of externals)
 * <b>`svn status`</b>
-  * filters out distracting, useless output about externals (don't worry -- it still shows which files were _modified_)
-  * the flags (?, M, C, etc.) are in *color*!
+   filters out distracting, useless output about externals (don't worry -- it still shows which files were _modified_)
+   the flags (?, M, C, etc.) are in *color*!
 * <b>`svn move`</b> it will let you move multiple source files to a destination directory with a single command
 
 (* You can pass --no-color to disable colors for a single command...useful if you want to pipe the output to another command or something. Eventually maybe we could make this a per-user option via .subwrap?)
 
-New subcommands:
+#### New subcommands:
+
 * <b>`svn each_unadded`</b> (+eu+, +unadded+) -- goes through each unadded (`?`) file reported by `svn status` and asks you what to do with them (add, delete, ignore).
+
 * <b>`svn revisions`</b> -- lists all revisions with log messages and lets you browse through them interactively
 * <b>`svn externals`</b> -- lists all externals
 * <b>`svn edit_externals`</b> (+ee+)
