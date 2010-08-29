@@ -1,13 +1,13 @@
 # <i>Subwrap</i> -- an enhanced +svn+ command
-link:include/subwrap.jpg
+>  link:include/subwrap.jpg
 
-[<b>Home page</b>:]        http://subwrap.rubyforge.org/
-[<b>Project site</b>:]     http://rubyforge.org/projects/subwrap
-[<b>Suggestions?</b>:]     http://subwrap.uservoice.com
-[<b>Gem install</b>:]      `gem install subwrap`
-[<b>Author</b>:]           Tyler Rick (<rubyforge.org|tylerrick.com>)
-[<b>Copyright</b>:]        2007 QualitySmith, Inc.
-[<b>License</b>:]          {GNU General Public License}[http://www.gnu.org/copyleft/gpl.html]
+<b>Home page</b>: http://subwrap.rubyforge.org/
+<b>Project site</b>: http://rubyforge.org/projects/subwrap
+<b>Suggestions?</b>: http://subwrap.uservoice.com
+<b>Gem install</b>: `gem install subwrap`
+<b>Author</b>: Tyler Rick (<http://tylerrick.com>)
+<b>Copyright</b>: 2007 QualitySmith, Inc.
+<b>License</b>: [GNU General Public License](http://www.gnu.org/copyleft/gpl.html)
 
 ## What is it? 
 
