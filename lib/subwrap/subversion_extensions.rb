@@ -3,7 +3,8 @@
 gem 'colored'
 require 'colored'
 
-require 'facets/class_extend'
+require 'facets/class_extension'
+#require 'facets/class_extend'
 #require '/var/lib/gems/1.8/gems/xfacets-1.8.54/lib/facets/core/module/class_extension.rb'
 
 require 'subwrap/svn_command'
