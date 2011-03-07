@@ -4,7 +4,9 @@ require File.dirname(__FILE__) + '/../subwrap'
 
 require 'rubygems'
 
+gem 'facets', '=2.4.4'
 require 'facets'
+#require 'facets/fileutils/whereis'
 #require 'facets/more/command'    # Not until Facets includes my changes
 #require 'facets/kernel/load'
 #require 'facets/kernel/with'       # returning
@@ -18,14 +20,15 @@ require 'facets'
 #require 'facets/ruby' # to_proc
 #require 'facets/kernel/in'
 
-gem 'quality_extensions', '>=1.1.4'
+gem 'quality_extensions', '=1.1.0'
+require 'escape' # you have to install this
 require 'quality_extensions/array/expand_ranges'
 require 'quality_extensions/array/shell_escape'
 require 'quality_extensions/file_test/binary_file'
 require 'quality_extensions/console/command'
 require 'quality_extensions/string/with_knowledge_of_color'
 require 'quality_extensions/module/attribute_accessors'
-#require 'quality_extensions/module/class_methods'
+require 'quality_extensions/module/class_methods'
 
 require 'English'
 require 'pp'

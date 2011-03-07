@@ -22,14 +22,16 @@ Anyone who wants to hack/extend the svn command but is afraid to/too lazy to mes
 
 ### Dependencies
 
+* ruby (1.8.7) not yet ruby 1.9.2 compatible
 * colored
 * escape
-* facets
+* facets (2.4.4)
 * extensions
-* quality_extensions
+* quality_extensions (1.1.0)
 * rscm
 * termios (recommended, but no longer required)
 * win32console (Windows only, required for colored to work)
+ 
 
 ### Installation
 

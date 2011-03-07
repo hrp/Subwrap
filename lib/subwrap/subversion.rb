@@ -8,14 +8,10 @@ require 'rexml/xpath'
 require 'rubygems'
 
 gem 'facets'
-require 'facets/kernel/silence'
-silence_warnings do
-  require 'facets/kernel/require_local'
-  require 'facets/kernel/in'
-  require 'facets/enumerable/uniq_by'
-  require 'facets/fileutils/which'
-  require 'facets/fileutils/whereis'
-end
+require 'facets'
+#require 'facets/kernel/silence'
+require 'facets/fileutils/whereis'
+require 'active_support'
 
 gem 'quality_extensions'
 require 'quality_extensions/module/initializer'
