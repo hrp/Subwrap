@@ -1,8 +1,8 @@
 # <i>Subwrap</i> -- an enhanced +svn+ command
 
-* **Home page**: http://subwrap.rubyforge.org/
-* **Project site**: http://rubyforge.org/projects/subwrap
-* **Suggestions?**: http://subwrap.uservoice.com
+* **Home page**: <http://subwrap.rubyforge.org/>
+* **Project site**: <http://rubyforge.org/projects/subwrap>
+* **Suggestions?**: <http://subwrap.uservoice.com>
 * **Gem install**: `gem install subwrap`
 * **Author**: Tyler Rick (<http://tylerrick.com>)
 * **Copyright**: 2007 QualitySmith, Inc.
@@ -10,7 +10,7 @@
 
 ## What is it? 
 
-This is a replacement **`svn` command-line client** meant to be used instead of the standard +svn+ command. (Actually, it's a _wrapper_, not a strict replacement, because it still uses `/usr/bin/svn` to do all the dirty work.)
+This is a replacement **svn command-line client** meant to be used instead of the standard `svn` command. (Actually, it's a *wrapper*, not a strict replacement, because it still uses `/usr/bin/svn` to do all the dirty work.)
 
 ## Who is it for?
 
@@ -33,19 +33,21 @@ Anyone who wants to hack/extend the svn command but is afraid to/too lazy to mes
 
 ### Installation
 
-* Install the gem (once per _system_):
+* Install the gem (once per system_:
 
-  sudo gem install subwrap --include-dependencies
+`sudo gem install subwrap --include-dependencies`
 
-The command will now be available immediately by typing `subwrap` instead of `svn`. If you'd like to actually *replace* the standard `svn` command (that
+Tjijjihe command will now be available immediately by typing `subwrap` instead of `svn`. 
+
+If you'd like to actually *replace* the standard `svn` command (that
 is, if you'd like to be able to run it simply by typing `svn`), then you you will also need to run `sudo _subwrap_post_install`, which will
 attempt to do the following (or you can do this manually):
 
-* (Linux only:) Make the svn wrapper command *executable*:
+(Linux only) Make the svn wrapper command *executable*:
 
-    sudo chmod a+x /usr/lib/ruby/gems/1.8/gems/subwrap*/bin/*
+`sudo chmod a+x /usr/lib/ruby/gems/1.8/gems/subwrap*/bin/*`
 
-  (Why can't we just set `executables = "svn"` in the gemspec and have it automatically install it to /usr/bin? Because that would cause it to **wipe out** the existing executable at `/usr/bin/svn`! If you know of a better, more automatic solution to this, please let me know!)
+(Why can't we just set `executables = "svn"` in the gemspec and have it automatically install it to `/usr/bin`? Because that would cause it to **wipe out** the existing executable at `/usr/bin/svn`! If you know of a better, more automatic solution to this, please let me know!)
 
 * (Linux only:) Next, you need to add the gem's +bin+ directory to be added to the **<i>front</i>** of your path (once per _user_). You may run `_subwrap_post_install` and let it attempt to do this for you, or you can do it manually:
 
